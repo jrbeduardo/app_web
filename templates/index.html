@@ -1,0 +1,49 @@
+{% extends "bootstrap/base.html" %}
+
+{% from "_macro.html" import render_field %}
+
+
+{% block content %}
+
+
+
+<div class="container">
+  <h1>Diabetes</h1>  
+  <hr>
+  <form action="" id="valida_datos">
+    <div class="form-row">
+      <div class="col-md-4">
+        {{render_field(form.bmi, value='33.6', min='15', max='50')}}
+      </div>
+      <div class="col-md-4">
+        {{render_field(form.glucose,  value='148', min='80', max='300')}}
+      </div>
+      <div class="col-md-4">
+        {{render_field(form.age,  value='50', min='21', max='90')}}
+      </div>
+    </div>
+    <div class="form-row justify-content-md-center">
+      <div class="col-md-12">
+        <button type="button" 
+          class="btn btn-success" name="enviar" id="enviar" onclick="onClickEstimateDiabetes()">
+          enviar</button>
+        <input class="btn btn-danger" type="reset" value="Reset">
+
+      </div>
+
+    </div>
+  </form>
+</div>
+
+<div class="container justify-content-md-center" id="resultado"></div>
+
+
+
+{% endblock %}
+
+
+
+{% block scripts %}
+{{super()}}
+<script src="{{url_for('.static', filename='js/app.js')}}"></script>
+{% endblock %}
